@@ -1,0 +1,17 @@
+services:
+  webview:
+    build:
+      dockerfile: ./docker/webview/Dockerfile
+      context: .
+  customer_api:
+    build: 
+      dockerfile: ./docker/customer_api/Dockerfile
+      context: .
+  machine_api:
+    build:
+      dockerfile: ./docker/machine_api/Dockerfile
+      context: .
+  postgres:
+    build:
+      dockerfile: ./docker/postgres/Dockerfile
+      context: .

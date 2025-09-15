@@ -1,7 +1,0 @@
-- name: Updating registries
-  hosts: 192.168.56.2
-  become: yes
-
-  tasks:
-    - name: Update
-      ansible.builtin.shell: apt update
