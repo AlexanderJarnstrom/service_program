@@ -1,3 +1,4 @@
+
 fn main() {
-    println!("Hello, world!");
+    customer_api::run();
 }
