@@ -3,10 +3,19 @@ services:
     build:
       dockerfile: ./docker/webview/Dockerfile
       context: .
+
   customer_api:
     build: 
       dockerfile: ./docker/customer_api/Dockerfile
       context: .
+    ports:
+      - "8080:8000"
+    develop:
+      watch:
+        - action: rebuild
+          path: ./src/customer_api/target/debug/customer_api
+          target: ./src/customer_api/target/debug/
+
   machine_api:
     build:
       dockerfile: ./docker/machine_api/Dockerfile
