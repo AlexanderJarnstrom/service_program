@@ -1,13 +1,9 @@
 services:
   webview:
-    build:
-      dockerfile: ./docker/webview/Dockerfile
-      context: .
+    build: ./src/webview/
 
   customer_api:
-    build: 
-      dockerfile: ./docker/customer_api/Dockerfile
-      context: .
+    build: ./src/customer_api/
     ports:
       - "8080:8000"
     develop:
@@ -17,10 +13,23 @@ services:
           target: ./src/customer_api/target/debug/
 
   machine_api:
-    build:
-      dockerfile: ./docker/machine_api/Dockerfile
-      context: .
-  postgres:
-    build:
-      dockerfile: ./docker/postgres/Dockerfile
-      context: .
+    build: ./src/machine_api/
+    develop:
+      watch:
+        - action: rebuild
+          path: ./src/machine_api/target/debug/machine_api
+          target: ./src/machine_api/target/debug/
+
+  database:
+    build: ./src/database/
+    env_file: ./src/database/database.env
+    # volumes:
+    #   database-volume:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  webview:
+    build: ./src/webview/
+
+# volumes:
+#   database-volume:
