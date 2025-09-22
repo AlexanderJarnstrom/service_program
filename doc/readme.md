@@ -7,5 +7,5 @@ These are the microservice specific documentations.
 
 ## Structure
 
-[structure](./structure.png)
+![structure](./structure.png)
 
