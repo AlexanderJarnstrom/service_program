@@ -27,3 +27,6 @@ psql --username ${POSTGRES_USER} -c "CREATE USER ${SP_MACHINE_USER} WITH PASSWOR
 
 echo "Creating ${SP_MACHINE_DATABASE} for ${SP_MACHINE_USER}"
 psql --username ${POSTGRES_USER} -c "CREATE DATABASE ${SP_MACHINE_DATABASE} OWNER ${SP_MACHINE_USER};"
+
+echo "Creating machine databases"
+psql --username ${POSTGRES_USER} -d ${SP_MACHINE_DATABASE} -f ./machine_db/tables.sql
