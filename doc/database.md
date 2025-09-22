@@ -15,3 +15,20 @@ The variables are located in:
 - **SP_MACHINE_USER**: username for machine database manager. (required)
 - **SP_MACHINE_PASSWORD**: password for the machine user. (required)
 - **SP_MACHINE_DATABASE**: machine database name. (required)
+
+## Tables
+
+### Customers
+
+- **cid**: customer id, *uuid*, primary key.
+- **f_name**: customer first name, varchar, required.
+- **l_name**: customer last name, varchar, required.
+- **email**: customer email, varchar.
+
+### Machines
+
+- **mid**: machine id, *serial*, primary key.
+- **cid**: customer id, *uuid*, required.
+- **address**: machine address/location, *varchar*, required.
+- **last_service**: last service date, *date*.
+- **next_service**: next service date, *date*.
