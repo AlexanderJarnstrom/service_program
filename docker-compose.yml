@@ -1,18 +1,28 @@
 services:
   webview:
+    image: jarnstrom/sp_webview:latest
     build: ./src/webview/
 
   customer_api:
+    image: jarnstrom/sp_customer_api:latest
     build: ./src/customer_api/
+    environment:
+      SP_DB_NAME: sp_customer_db
+      SP_DB_USER: sp_customer
+      SP_DB_PASS: customer_123
+      SP_DB_HOST: database
+    networks:
+      - service_network
     ports:
-      - "8080:8000"
+      - "8000:8000"
     develop:
       watch:
         - action: rebuild
           path: ./src/customer_api/target/debug/customer_api
-          target: ./src/customer_api/target/debug/
+          target: ./src/customer_api/target/debug/customer_api
 
   machine_api:
+    image: jarnstrom/sp_machine_api:latest
     build: ./src/machine_api/
     develop:
       watch:
@@ -21,15 +31,27 @@ services:
           target: ./src/machine_api/target/debug/
 
   database:
+    hostname: database
+    image: jarnstrom/sp_database:latest
     build: ./src/database/
-    env_file: ./src/database/database.env
+    environment:
+      POSTGRES_PASSWORD: 12345678
+      SP_CUSTOMER_USER: sp_customer
+      SP_CUSTOMER_DATABASE: sp_customer_db
+      SP_CUSTOMER_PASSWORD: customer_123
+      SP_MACHINE_USER: sp_machine
+      SP_MACHINE_DATABASE: sp_machine_db
+      SP_MACHINE_PASSWORD: machine_123
+    networks:
+      - service_network
     # volumes:
     #   database-volume:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
-  webview:
-    build: ./src/webview/
+networks:
+  service_network:
+    driver: bridge
 
 # volumes:
 #   database-volume:
