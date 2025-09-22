@@ -21,9 +21,9 @@ The variables are located in:
 ### Customers
 
 - **cid**: customer id, *uuid*, primary key.
-- **f_name**: customer first name, varchar, required.
-- **l_name**: customer last name, varchar, required.
-- **email**: customer email, varchar.
+- **f_name**: customer first name, *varchar*, required.
+- **l_name**: customer last name, *varchar*, required.
+- **email**: customer email, *varchar*.
 
 ### Machines
 
