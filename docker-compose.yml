@@ -2,10 +2,19 @@ services:
   webview:
     image: jarnstrom/sp_webview:latest
     build: ./src/webview/
+    volumes:
+      - ./src/webview/www:/var/www/sp
+    networks:
+      - service_network
+    ports:
+      - "80:80"
+      # - "8080:8080"
+      # - "8181:8181"
 
   customer_api:
     image: jarnstrom/sp_customer_api:latest
     build: ./src/customer_api/
+    hostname: customer-api
     environment:
       SP_DB_NAME: sp_customer_db
       SP_DB_USER: sp_customer
@@ -13,8 +22,6 @@ services:
       SP_DB_HOST: database
     networks:
       - service_network
-    ports:
-      - "8000:8000"
     develop:
       watch:
         - action: rebuild
@@ -24,6 +31,14 @@ services:
   machine_api:
     image: jarnstrom/sp_machine_api:latest
     build: ./src/machine_api/
+    hostname: machine-api
+    environment:
+      SP_DB_NAME: sp_machine_db
+      SP_DB_USER: sp_machine
+      SP_DB_PASS: machine_123
+      SP_DB_HOST: database
+    networks:
+      - service_network
     develop:
       watch:
         - action: rebuild
