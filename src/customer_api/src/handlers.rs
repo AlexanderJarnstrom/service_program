@@ -1,5 +1,10 @@
 use crate::{database, models::{Customer, InsertCustomer}};
 
+pub async fn get_any() -> Result<impl warp::Reply, warp::Rejection> {
+    println!("ANY");
+    Ok(warp::reply::reply())
+}
+
 pub async fn get_customers() -> Result<impl warp::Reply, warp::Rejection> {
     // Get customer data
 
