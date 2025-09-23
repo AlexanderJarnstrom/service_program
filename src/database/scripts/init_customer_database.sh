@@ -30,3 +30,5 @@ psql --username ${POSTGRES_USER} -c "CREATE DATABASE ${SP_CUSTOMER_DATABASE} OWN
 
 echo "Creating customer databases"
 psql --username ${POSTGRES_USER} -d ${SP_CUSTOMER_DATABASE} -f ./customer_db/tables.sql
+
+psql --username ${POSTGRES_USER} -d ${SP_CUSTOMER_DATABASE} -c "GRANT pg_read_all_data TO ${SP_CUSTOMER_USER}; GRANT pg_write_all_data TO ${SP_CUSTOMER_USER};"

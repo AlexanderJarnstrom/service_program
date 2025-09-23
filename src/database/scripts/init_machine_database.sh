@@ -30,3 +30,5 @@ psql --username ${POSTGRES_USER} -c "CREATE DATABASE ${SP_MACHINE_DATABASE} OWNE
 
 echo "Creating machine databases"
 psql --username ${POSTGRES_USER} -d ${SP_MACHINE_DATABASE} -f ./machine_db/tables.sql
+
+psql --username ${POSTGRES_USER} -d ${SP_MACHINE_DATABASE} -c "GRANT pg_read_all_data TO ${SP_MACHINE_USER}; GRANT pg_write_all_data TO ${SP_MACHINE_USER};"
