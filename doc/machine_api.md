@@ -1,4 +1,4 @@
-# Customer API
+# Machines API
 
 ## Environment Variables
 
@@ -20,42 +20,42 @@
 **get**:
 
 ```url
-http://localhost:8000/api/customer
+http://localhost:8000/api/machines
 
 ```
 
 **post**:
 
 ```url
-http://localhost:8000/api/customer
+http://localhost:8000/api/machines
 ```
 
 ```json
 {
-    "f_name": <fist name>,
-    "l_name": <last name>,
-    "email": <email/null>
+    "address": <address>,
+    "last_service": <last service / null>,
+    "next_service": <next service / null>
 }
 ```
 
 **delete**:
 
 ```url
-http://localhost:8000/api/customer/<customer_id>
+http://localhost:8000/api/machines/<machine_id>
 ```
 
 **put*:
 
 ```url
-http://localhost:8000/api/customer
+http://localhost:8000/api/machines
 ```
 
 ```json
 {
-    "customer_id": <customer id>,
-    "f_name": <fist name>,
-    "l_name": <last name>,
-    "email": <email/null>
+    "machines_id": <machine id>,
+    "address": <address>,
+    "last_service": <last service / null>,
+    "next_service": <next service / null>
 }
 ```
 
