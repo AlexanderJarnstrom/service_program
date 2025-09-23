@@ -1,0 +1,43 @@
+<!DOCTYPE >
+<html>
+  <head>
+    <link rel="stylesheet" type="" href="style/colors.css" />
+    <link rel="stylesheet" type="" href="style/structure.css" />
+    <link rel="stylesheet" type="" href="style/ui.css" />
+    <link rel="stylesheet" type="" href="style/customers.css" />
+    <script src="scripts/add_customer.js"></script>
+    <script src="scripts/url_handler.js"></script>
+  </head>
+  <body>
+    <div id="panel-holder">
+      <div id="side-panel">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a class="active" href="customers.html">Customers</a></li>
+          <li><a href="machines.html">Machines</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div id="control-panel">
+        <div class="holder">
+          <form action="javascript:;" onsubmit=" add_customer( this ) ">
+            <input id="f-f-name" type="text" name="f_name" value="", placeholder="First name" required>
+            <input id="f-l-name" type="text" name="l_name" value="", placeholder="Last Name" required>
+            <input id="f-email" type="text" name="email" value="", placeholder="Email">
+            <input type="submit" name="" value="Add">
+          </form>  
+        </div>
+      </div>
+      <div id="content-panel">
+        <div id="content-panel-holder">
+          <div id="customer-panel"></div>
+          <div id="customer-machines-panel"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="scripts/customer_machine_content.js"></script>
+  <script src="scripts/create_card.js"></script>
+  <script src="scripts/customers.js"></script>
+</html>

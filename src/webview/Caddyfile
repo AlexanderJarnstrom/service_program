@@ -1,0 +1,24 @@
+:80 {
+
+  @customer_api {
+    path /api/customers /api/customers/* 
+	}
+
+  @machine_api {
+    path  /api/machines /api/machines/*
+  }
+
+  handle @customer_api {
+    reverse_proxy customer-api:8000
+  }
+
+  handle @machine_api {
+    reverse_proxy machine-api:8000
+  }
+
+  handle {
+    root * /var/www/sp/
+    file_server 
+  }
+}
+

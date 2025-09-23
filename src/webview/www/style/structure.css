@@ -1,0 +1,86 @@
+/* main structure styles */
+
+body {
+  padding: 0;
+  color: var(--fg);
+  background-image: linear-gradient(
+    to bottom right,
+    var(--bg_green),
+    var(--bg_blue)
+  );
+}
+
+#side-panel {
+  background-color: var(--bg0);
+  border-radius: 20px;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  bottom: 20px;
+  width: 200px;
+}
+
+#control-panel {
+  position: absolute;
+  border-radius: 20px;
+  background-color: var(--bg0);
+  top: 20px;
+  left: 240px;
+  right: 20px; 
+  height: 50px;
+}
+
+#content-panel {
+  position: absolute;
+  border-radius: 20px;
+  background-color: var(--bg0);
+  left: 240px;
+  bottom: 20px;
+  top: 90px;
+  right: 20px;
+}
+
+#control-panel .holder {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#content-panel-holder {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.card {
+  width: 100%;
+  height: 100px;
+  position: relative;
+}
+
+.card .card-content {
+  position: absolute;
+  border-radius: 20px;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  padding: 10px;
+  color: var(--fg);
+  background-color: var(--bg1);
+}
+
+.card .card-content:hover {
+  background-color: var(--bg_green);
+  cursor: pointer;
+}
+
+.card .card-content.critical {
+  color: var(--red);
+  background-color: var(--bg_red);
+}
+
+.card .card-content.warning {
+  color: var(--yellow);
+  background-color: var(--bg_yellow);
+}
