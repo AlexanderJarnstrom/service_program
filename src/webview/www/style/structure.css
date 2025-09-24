@@ -12,7 +12,7 @@ body {
 
 #side-panel {
   background-color: var(--bg0);
-  border-radius: 20px;
+  border-radius: var(--border_radius);
   position: absolute;
   left: 20px;
   top: 20px;
@@ -22,7 +22,7 @@ body {
 
 #control-panel {
   position: absolute;
-  border-radius: 20px;
+  border-radius: var(--border_radius);
   background-color: var(--bg0);
   top: 20px;
   left: 240px;
@@ -32,7 +32,7 @@ body {
 
 #content-panel {
   position: absolute;
-  border-radius: 20px;
+  border-radius: var(--border_radius);
   background-color: var(--bg0);
   left: 240px;
   bottom: 20px;
@@ -52,6 +52,75 @@ body {
   position: relative;
 }
 
+#customer-panel, #machines-panel {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 50%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#customer-machines-panel, #machine-add-panel {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 50%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#machine-add-panel .holder {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#edit-panel-customer, #edit-panel-machine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  background-color: var(--bg1);
+  border: 1px solid var(--fg);
+  border-radius: var(--border_radius);
+}
+
+#edit-panel-machine {
+  height: 333px;
+  width: 500px;
+}
+
+#edit-panel-customer {
+  height: 266px;
+  width: 500px;
+}
+
+#edit-panel .holder {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.holder form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#customer-form {
+  transform: translate(0%, -50%);
+  left: 10px;
+}
+
+.holder form td {
+  padding: 10px;
+}
+
 .card {
   width: 100%;
   height: 100px;
@@ -60,12 +129,11 @@ body {
 
 .card .card-content {
   position: absolute;
-  border-radius: 20px;
+  border-radius: var(--border_radius);
   top: 10px;
   bottom: 10px;
   left: 10px;
   right: 10px;
-  padding: 10px;
   color: var(--fg);
   background-color: var(--bg1);
 }
@@ -83,4 +151,47 @@ body {
 .card .card-content.warning {
   color: var(--yellow);
   background-color: var(--bg_yellow);
+}
+
+.card .card-content .done, .remove, .edit {
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 50%;
+  height: 30px;
+  width: 30px;
+  border-radius: var(--border_radius);
+  border-width: 0px;
+  font-size: 18;
+}
+
+.card .card-content .done {
+  right: 120px;
+  color: var(--bg_green);
+  background-color: var(--green);
+}
+
+.card .card-content .edit {
+  right: 70px;
+  color: var(--bg_yellow);
+  background-color: var(--yellow);
+}
+
+.card .card-content .remove {
+  right: 20px;
+  color: var(--bg_red);
+  background-color: var(--red);
+}
+
+.card .card-content .title {
+  position: absolute;
+  margin: 0px;
+  left: 20px;
+  top: 15px;
+}
+
+.card .card-content .subtitle {
+  position: absolute;
+  margin: 0px;
+  left: 20px;
+  bottom: 15px;
 }

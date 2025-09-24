@@ -8,7 +8,7 @@ ul {
 li a {
   display: block;
   color: var(--fg);
-  border-radius: 20px;
+  border-radius: var(--border_radius);
   background-color: var(--bg1);
   margin-bottom: 10px;
   padding: 8px 16px;
@@ -32,21 +32,72 @@ form {
   transform: translate(0, -50%);
 }
 
-input {
+select {
   color: var(--fg);
   background-color: var(--bg1);
-  border-radius: 20px;
+  cursor: pointer;
+  border-radius: var(--border_radius);
   margin-right: 10px;
   border: 0;
   padding: 8px 16px;
+  width: 200px;
+  border: 1px solid var(--fg);
 }
 
-input:focus {
-  color: var(--bg_green);
+select:focus {
+  color: var(--bg1);
   background-color: var(--fg);
+  border: 1px solid var(--bg1);
+}
+
+select:hover {
+  color: var(--bg1);
+  background-color: var(--fg);
+  border: 1px solid var(--bg1);
+}
+
+input[type="submit"] {
+  color: var(--green);
+  background-color: var(--bg_green);
+  border: 1px solid var(--green);
+}
+
+input[type="submit"]:hover {
+  color: var(--bg_green);
+  background-color: var(--green);
+  border: 1px solid var(--bg_green);
+}
+
+input[type="reset"] {
+  color: var(--red);
+  background-color: var(--bg_red);
+  border: 1px solid var(--red);
+}
+
+input[type="reset"]:hover {
+  color: var(--bg_red);
+  background-color: var(--red);
+  border: 1px solid var(--bg_red);
+}
+
+input[type="text"] {
+  cursor: text;
+}
+
+input {
+  color: var(--fg);
+  cursor: pointer;
+  background-color: var(--bg1);
+  border-radius: var(--border_radius);
+  border: 1px solid var(--fg);
+  margin-right: 10px;
+  padding: 8px 16px;
+  width: 200px;
 }
 
 input:hover {
-  color: var(--bg_green);
+  color: var(--bg1);
   background-color: var(--fg);
+  border: 1px solid var(--bg1);
 }
+

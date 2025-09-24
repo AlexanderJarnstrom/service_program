@@ -1,9 +1,14 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
   <head>
     <link rel="stylesheet" type="" href="style/colors.css">
+    <link rel="stylesheet" type="" href="style/constants.css" />
     <link rel="stylesheet" type="" href="style/structure.css">
     <link rel="stylesheet" type="" href="style/ui.css">
+
+    <script src="./scripts/url_handler.js"></script>
+    <script src="./scripts/machine_management.js"></script>
+    <script src="./scripts/customer_management.js"></script>
   </head>
   <body>
     <div id="panel-holder">
@@ -15,9 +20,124 @@
           <li><a href="about.html">About</a></li>
         </ul>
       </div>
-      <div id="content-panel">
-         
+      <div id="content-panel" style="top: 20px;">
+        <div id="content-panel-holder">
+          <div id="machines-panel">
+          </div>
+          <div id="machine-add-panel">
+            <div class="holder">
+
+              <form action="javascript:;" onsubmit=" add_machine( this ); location.reload(); ">
+                <table>
+                  <tr>
+                    <td>
+                      <b id="title">Add machine</b>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="f-address">Address</label>
+                    </td>
+                    <td>
+                      <input id="f-address" type="text" name="f-address" value="" required>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="f-customer">Customer</label>
+                    </td>
+                    <td>
+                      <select id="customer-select" name="f-customer" required></select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="f-next">Next Service</label>
+                    </td>
+                    <td>
+                      <input id="f-next" type="date" name="f-last" value="">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="f-last">Last Service</label>
+                    </td>
+                    <td>
+                      <input id="f-last" type="date" name="f-next" value="">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="submit" name="" value="Add Machine">
+                    </td>
+                    <td>
+                      <input type="reset" name="" value="Clear">
+                    </td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="edit-panel-machine">
+        <div class="holder">
+          <form id="machine-edit" action="javascript:;" onsubmit=" edit_machine( this ); location.reload();" onreset=" document.getElementById('edit-panel-machine').style.display = 'none'; ">
+            <table>
+              <tr>
+                <td>
+                  <b id="title">Edit machine</b>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="f-address">Address</label>
+                </td>
+                <td>
+                  <input id="f-address" type="text" name="f-address" value="" required>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="f-customer">Customer</label>
+                </td>
+                <td>
+                  <select id="customer-select" name="f-customer" required></select>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="f-next">Next Service</label>
+                </td>
+                <td>
+                  <input id="f-next" type="date" name="f-last" value="">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="f-last">Last Service</label>
+                </td>
+                <td>
+                  <input id="f-last" type="date" name="f-next" value="">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="submit" name="" value="Edit Machine">
+                </td>
+                <td>
+                  <input type="reset" name="" value="Cancel">
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>      
       </div>
     </div>
   </body>
+  <script src="./scripts/machine_page.js"></script>
+  <script>
+    init_form();
+    load_machine_list();
+  </script>
 </html>
