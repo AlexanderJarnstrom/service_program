@@ -24,7 +24,7 @@ http://localhost:8000/api/customer
 ```
 
 ```url
-http://localhost:8000/api/customer/<uid>
+http://localhost:8000/api/customer/<customer id>
 ```
 
 **post**:
