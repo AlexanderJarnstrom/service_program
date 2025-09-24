@@ -21,9 +21,15 @@
 
 ```url
 http://localhost:8000/api/machines
-
 ```
 
+```url
+http://localhost:8000/api/machines/<machine id>
+```
+
+```url
+http://localhost:8000/api/machines/customer/<customer id>
+```
 **post**:
 
 ```url
