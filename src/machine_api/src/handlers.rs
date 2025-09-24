@@ -10,6 +10,16 @@ pub async fn get_machines() -> Result<impl warp::Reply, warp::Rejection> {
     Ok(warp::reply::json(&machines))
 }
 
+pub async fn get_machine(mid: i32) -> Result<impl warp::Reply, warp::Rejection> {
+    // Get machines
+
+    println!("Requested machine data: {mid}");
+
+    let machine = database::get_machine(mid);
+
+    Ok(warp::reply::json(&machine))
+}
+
 pub async fn get_customer_machines(id: String) -> Result<impl warp::Reply, warp::Rejection> {
     // Get machines
 
@@ -29,6 +39,14 @@ pub async fn delete_machine(id: i32) -> Result<impl warp::Reply, warp::Rejection
     println!("Deleting machine {}", id);
 
     database::delete_machine(id);
+
+    Ok(warp::reply::reply())
+}
+
+pub async fn service_done_machine(id: i32) -> Result<impl warp::Reply, warp::Rejection> {
+    // Update machine service
+
+    database::service_done(id);
 
     Ok(warp::reply::reply())
 }

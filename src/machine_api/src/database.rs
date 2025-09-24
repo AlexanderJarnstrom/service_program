@@ -1,3 +1,4 @@
+use chrono::NaiveDate;
 use diesel::prelude::*;
 use crate::{models::*, schema::machines};
 
@@ -16,11 +17,25 @@ fn connect_db() -> PgConnection {
 
 pub fn get_machines() -> Vec<Machine> {
     use crate::schema::machines::dsl::*;
-    let db_con = &mut connect_db();
+    let db_conn = &mut connect_db();
     let res = machines
         .select(Machine::as_select())
-        .load(db_con)
+        .load(db_conn)
         .expect("Error loading machines");
+
+    return res;
+}
+
+pub fn get_machine(mid: i32) -> Machine {
+    use crate::schema::machines::dsl::*;
+
+    let db_conn = &mut connect_db();
+
+    let res = machines
+        .select(Machine::as_select())
+        .filter(machine_id.eq(mid))
+        .first(db_conn)
+        .expect("Error loading machine");
 
     return res;
 }
@@ -47,6 +62,34 @@ pub fn delete_machine(mid: i32) {
     diesel::delete(machines.find(mid))
         .execute(db_conn)
         .expect("Error removing machine");
+}
+
+pub fn service_done(mid: i32) {
+    use crate::schema::machines::dsl::*;
+    use crate::schema::machines;
+
+    let db_conn = &mut connect_db();
+
+    let mut prev = machines
+        .select(Machine::as_select())
+        .filter(machines::machine_id.eq(mid))
+        .first(db_conn)
+        .expect("Could not load machine.");
+
+    if prev.next_service == None {
+        return;
+    }
+
+    prev.last_service = prev.next_service;
+    prev.next_service = None;
+        
+    diesel::update(machines.find(prev.machine_id))    
+        .set((
+            next_service.eq(prev.next_service),
+            last_service.eq(prev.last_service)
+        ))
+        .execute(db_conn)
+        .expect("Could not update last service field.");
 }
 
 pub fn update_machine(machine: Machine) {
