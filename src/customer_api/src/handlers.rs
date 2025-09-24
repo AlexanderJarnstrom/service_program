@@ -1,10 +1,5 @@
 use crate::{database, models::{Customer, InsertCustomer}};
 
-pub async fn get_any() -> Result<impl warp::Reply, warp::Rejection> {
-    println!("ANY");
-    Ok(warp::reply::reply())
-}
-
 pub async fn get_customers() -> Result<impl warp::Reply, warp::Rejection> {
     // Get customer data
 
@@ -14,6 +9,20 @@ pub async fn get_customers() -> Result<impl warp::Reply, warp::Rejection> {
 
     Ok(warp::reply::json(&customers))
 }
+
+pub async fn get_customer(id: String) -> Result<impl warp::Reply, warp::Rejection> {
+    // Get customer data
+
+    println!("Requested user data: {id}");
+
+    let cid = uuid::Uuid::try_parse(&id)
+        .expect("Could not parse");
+
+    let customer = database::get_customer(cid);
+
+    Ok(warp::reply::json(&customer))
+}
+
 
 pub async fn delete_customer(id: String) -> Result<impl warp::Reply, warp::Rejection> {
     // Delete customer

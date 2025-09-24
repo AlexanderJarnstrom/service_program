@@ -8,6 +8,7 @@ pub fn routes() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejecti
         .or(delete_customers())
         .or(put_customer())
         .or(post_customer())
+        .or(get_customer())
 }
 
 fn get_customers() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
@@ -18,6 +19,17 @@ fn get_customers() -> impl Filter<Extract = impl warp::Reply, Error = warp::Reje
     warp::path!("api" / "customers")
         .and(warp::get())
         .and_then(handlers::get_customers)
+        .with(cors)
+}
+
+fn get_customer() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
+    let cors = warp::cors()
+        .allow_any_origin()
+        .allow_method("GET");
+
+    warp::path!("api" / "customers" / String)
+        .and(warp::get())
+        .and_then(handlers::get_customer)
         .with(cors)
 }
 

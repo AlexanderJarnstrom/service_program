@@ -25,6 +25,19 @@ pub fn get_customers() -> Vec<Customer> {
     return res;
 }
 
+pub fn get_customer(cid: uuid::Uuid) -> Customer {
+    use crate::schema::customers::dsl::*;
+
+    let db_conn = &mut connect_db();
+    let res = customers
+        .select(Customer::as_select())
+        .filter(customer_id.eq(cid))
+        .first(db_conn)
+        .expect("Error loading customers");
+
+    return res;
+}
+
 pub fn delete_customer(cid: uuid::Uuid) {
     use crate::schema::customers::dsl::*;
 
