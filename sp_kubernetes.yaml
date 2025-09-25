@@ -1,0 +1,136 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sp-customer-api
+  labels:
+    app: sp-customer-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sp-customer-api
+  template:
+    metadata:
+      labels:
+        app: sp-customer-api
+    spec:
+      containers:
+        - name: customer-api
+          image: jarnstrom/sp_customer_api:latest
+          ports:
+            - containerPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sp-machine-api
+  labels:
+    app: sp-machine-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sp-machine-api
+  template:
+    metadata:
+      labels:
+        app: sp-machine-api
+    spec:
+      containers:
+        - name: machine-api
+          image: jarnstrom/sp_machine_api:latest
+          ports:
+            - containerPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sp-database
+  labels:
+    app: sp-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sp-database
+  template:
+    metadata:
+      labels:
+        app: sp-database
+    spec:
+      containers:
+      - name: database
+        image: jarnstrom/sp_database:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sp-credentials
+              key: postgres-password
+        - name: SP_CUSTOMER_USER
+          valueFrom:
+            secretKeyRef:
+              name: sp-credentials
+              key: customer-username
+        - name: SP_CUSTOMER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sp-credentials
+              key: customer-password
+        - name: SP_CUSTOMER_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: sp-config
+              key: customer-db-name
+        - name: SP_MACHINE_USER
+          valueFrom:
+            secretKeyRef:
+              name: sp-credentials
+              key: machine-username
+        - name: SP_MACHINE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sp-credentials
+              key: machine-password
+        - name: SP_MACHINE_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: sp-config
+              key: machine-db-name
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sp-webview
+  labels:
+    app: sp-webview
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sp-webview
+  template:
+    metadata:
+      labels:
+        app: sp-webview
+    spec:
+      containers:
+        - name: webview
+          image: jarnstrom/sp_webview:latest
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sp-config
+  labels:
+    data: config 
+data:
+  customer-db-name: "sp_customer_db"
+  machine-db-name: "sp_machine_db"
+  database-host: ""
+---
