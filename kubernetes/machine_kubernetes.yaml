@@ -6,6 +6,7 @@ metadata:
   labels:
     app: sp-machine-api
 spec:
+  type: LoadBalancer
   ports:
   - name: http
     port: 8000

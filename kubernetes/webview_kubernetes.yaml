@@ -22,7 +22,7 @@ kind: Service
 metadata:
   name: sp-webview-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: sp-webview
   ports:
@@ -38,7 +38,7 @@ metadata:
   labels:
     app: sp-webview
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: sp-webview

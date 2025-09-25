@@ -6,6 +6,7 @@ metadata:
   labels:
     app: sp-customer-api
 spec:
+  type: LoadBalancer
   ports:
   - name: http
     port: 8000
