@@ -1,4 +1,8 @@
 :80 {
+  log {
+    output stdout
+    level info
+  }
 
   @customer_api {
     path /api/customers /api/customers/* 
@@ -9,11 +13,11 @@
   }
 
   handle @customer_api {
-    reverse_proxy customer-api:8000
+    reverse_proxy {$CUSTOMER_HOST}:8000
   }
 
   handle @machine_api {
-    reverse_proxy machine-api:8000
+    reverse_proxy  {$MACHINE_HOST}:8000
   }
 
   handle {
@@ -21,4 +25,3 @@
     file_server 
   }
 }
-
