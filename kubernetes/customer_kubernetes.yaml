@@ -1,0 +1,59 @@
+---
+apiVersion: v1
+kind: Service 
+metadata:
+  name: sp-customer-service
+  labels:
+    app: sp-customer-api
+spec:
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 8000
+  selector:
+    app: sp-customer-api
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sp-customer-dep
+  labels:
+    app: sp-customer-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sp-customer-api
+  template:
+    metadata:
+      labels:
+        app: sp-customer-api
+    spec:
+      containers:
+        - name: sp-customer-api
+          image: jarnstrom/sp_customer_api:latest
+          ports:
+          - containerPort: 8000
+            name: api-port   
+          env:
+          - name: SP_DB_PASS
+            valueFrom:
+              secretKeyRef:
+                name: sp-credentials
+                key: customer-password
+          - name: SP_DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: sp-credentials
+                key: customer-username
+          - name: SP_DB_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: sp-config
+                key: customer-db-name
+          - name: SP_DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: sp-config
+                key: database-host
+---

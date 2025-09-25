@@ -1,0 +1,67 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webview-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: sp-webview-service
+            port:
+              number: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sp-webview-service
+spec:
+  type: NodePort
+  selector:
+    app: sp-webview
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      nodePort: 30001
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sp-webview-pod
+  labels:
+    app: sp-webview
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sp-webview
+  template:
+    metadata:
+      labels:
+        app: sp-webview
+    spec:
+      containers:
+        - name: sp-webview-cont
+          image: jarnstrom/sp_webview:latest
+          ports:
+            - containerPort: 80
+          env:
+          - name: CUSTOMER_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: sp-config
+                key: customer-host
+          - name: MACHINE_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: sp-config
+                key: machine-host
+---
+

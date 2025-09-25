@@ -2,12 +2,13 @@ services:
   webview:
     image: jarnstrom/sp_webview:latest
     build: ./src/webview/
-    volumes:
-      - ./src/webview/www:/var/www/sp
     networks:
       - service_network
     ports:
       - "80:80"
+    environment:
+      CUSTOMER_HOST: customer_api 
+      MACHINE_HOST: machine_api
       # - "8080:8080"
       # - "8181:8181"
 
