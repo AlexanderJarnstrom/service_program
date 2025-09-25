@@ -1,5 +1,10 @@
 # Webview
 
+## Environment variables
+
+- **CUSTOMER_HOST**: customer api address. (required)
+- **MACHINE_HOST**: machine api address. (required)
+
 ## Screenshots
 
 ![customer](./images/customer_view.png)
