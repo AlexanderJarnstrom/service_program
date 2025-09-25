@@ -10,3 +10,15 @@ These are the microservice specific documentations.
 
 ![structure](./images/structure.png)
 
+## Kubernetes setup
+
+### Secretes
+
+```bash
+kubectl create secret generic sp-credentials \
+    --from-literal=postgres-password="secret_password" \
+    --from-literal=customer-username="sp_customer" \
+    --from-literal=customer-password="secret_password" \
+    --from-literal=machine-username="sp_machine" \
+    --from-literal=machine-password="secret_password"
+```
