@@ -19,11 +19,11 @@ Microservice documentation: [doc](./doc)
 
 **The following items shall be delivered**:
 
-- [ ] A description of the software you have built and what it does.
-- [ ] A software architecture design of your application, describing the role of each component in your system, their responsibilities, and the architecture principles (e.g. cloud architecture patterns) that are used to connect them to a functioning system. This also includes a mapping between software components and the microservices designed and built to implement the components.
-- [ ] A discussion of the benefits and challenges with your architecture design. This must include a discussion about security. It must also include a discussion of what you have done or what can be done to mitigate the identified challenges.
-- [ ] A link to a configuration management repository (e.g. git) where the source code of the application can be viewed. This must also include the code for your Kubernetes deployment.
-- [ ] A video recording (5-10 minutes long) where you go through what the project is about, what the separate microservices do, run the project (using kubernetes), and access it through its user interface (e.g. a web browser), show any log output, and briefly walk through your kubernetes yaml file. You may upload this video or provide a link to it.
+- [x] A description of the software you have built and what it does.
+- [x] A software architecture design of your application, describing the role of each component in your system, their responsibilities, and the architecture principles (e.g. cloud architecture patterns) that are used to connect them to a functioning system. This also includes a mapping between software components and the microservices designed and built to implement the components.
+- [x] A discussion of the benefits and challenges with your architecture design. This must include a discussion about security. It must also include a discussion of what you have done or what can be done to mitigate the identified challenges.
+- [x] A link to a configuration management repository (e.g. git) where the source code of the application can be viewed. This must also include the code for your Kubernetes deployment.
+- [x] A video recording (5-10 minutes long) where you go through what the project is about, what the separate microservices do, run the project (using kubernetes), and access it through its user interface (e.g. a web browser), show any log output, and briefly walk through your kubernetes yaml file. You may upload this video or provide a link to it.
 
 ### Sides
 
